@@ -18,14 +18,28 @@
         </div>
     </header>
     <main>
-        <section id="quiz-rules">
-            <p>Welcome to the code quiz!</p> 
-            <p>You will have 90 seconds to answer a series of 5 multiple choice questions. </p>
-            <p>If you answer a question incorrectly, 10 seconds will be decucted from the allotted time.</p>
-            <p>The quiz is over when you answer all questions or if the timer reaches 0.</p>
-            <p>Good luck!</p>
-        </section>
-        <button id="start-btn">Start Quiz</button>
+        <div id="landing-div">
+            <section id="quiz-rules">
+                <p>Welcome to the code quiz!</p> 
+                <p>You will have 90 seconds to answer a series of 5 multiple choice questions. </p>
+                <p>If you answer a question incorrectly, 10 seconds will be decucted from the allotted time.</p>
+                <p>The quiz is over when you answer all questions or if the timer reaches 0.</p>
+                <p>Good luck!</p>
+            </section>
+            <button id="start-btn">Start Quiz</button>
+        </div>
+        <div id="quiz-div">
+            <section id="question"><h3></h3></section>
+            <section id="choices-container">
+                <ol id="choices-list">
+                    <button id="choice-a" class="choice" onclick="evaluateAnswer(this)" value="0"></button>
+                    <button id="choice-b" class="choice" onclick="evaluateAnswer(this)" value="1"></button>
+                    <button id="choice-c" class="choice" onclick="evaluateAnswer(this)" value="2"></button>
+                    <button id="choice-d" class="choice" onclick="evaluateAnswer(this)" value="3"></button>
+                </ol>
+                <p id="is-correct-text"></p>
+            </section>
+        </div>
     </main>
     <script src="./Assets/js/script.js"></script>
 </body>
