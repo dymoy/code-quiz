@@ -32,13 +32,13 @@
             <section id="question"><h3></h3></section>
             <section id="choices-container">
                 <ol id="choices-list">
-                    <button id="choice-a" class="choice"></button>
-                    <button id="choice-b" class="choice"></button>
-                    <button id="choice-c" class="choice"></button>
-                    <button id="choice-d" class="choice"></button>
+                    <button id="choice-a" class="choice" onclick="evaluateAnswer(this)" value="0"></button>
+                    <button id="choice-b" class="choice" onclick="evaluateAnswer(this)" value="1"></button>
+                    <button id="choice-c" class="choice" onclick="evaluateAnswer(this)" value="2"></button>
+                    <button id="choice-d" class="choice" onclick="evaluateAnswer(this)" value="3"></button>
                 </ol>
+                <p id="is-correct-text"></p>
             </section>
-
         </div>
     </main>
     <script src="./Assets/js/script.js"></script>

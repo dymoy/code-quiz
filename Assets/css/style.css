@@ -77,3 +77,11 @@ button:hover {
     text-align: left;
     padding-left: 15px;
 }
+
+#is-correct-text {
+    border-top: 2px lightgrey solid;
+    width: 200px;
+    height: 40px;
+    text-align: left;
+    padding-top: 20px;
+}

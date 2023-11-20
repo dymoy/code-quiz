@@ -11,14 +11,18 @@ var choiceB = document.getElementById("choice-b");
 var choiceC = document.getElementById("choice-c");
 var choiceD = document.getElementById("choice-d");
 
-const currentQuestion = 0;
+var currentQuestionIndex = 0;
 const questionsArray = [
-    ["Inside which HTML element do we put JavaScript?", ["<javascript>", "<scripting>", "<js>", "<script>"]]
+    ["Inside which HTML element do we put JavaScript?", ["<javascript>", "<scripting>", "<js>", "<script>"]],
+    ["Which of the following options is NOT a primitive data type of JavaScript?", ["String", "Boolean", "Alert", "Number"]]
 ];
-const answerKey = [3];
+const answerKey = [3, 2];
+
+var isCorrectEl = document.getElementById("is-correct-text");
 
 // This function will be called once the "Start" button is clicked 
 function startQuiz() {
+    currentQuestionIndex = 0;
     landingDiv.setAttribute("style", "display: none;");
     startTimer();
     showNextQuestion();
@@ -27,13 +31,34 @@ function startQuiz() {
 
 // This function will present the next question to the user.
 function showNextQuestion() {
-    questionEl.textContent = questionsArray[currentQuestion][0];
+    questionEl.textContent = questionsArray[currentQuestionIndex][0];
 
-    var thisChoiceList = questionsArray[currentQuestion][1];
+    var thisChoiceList = questionsArray[currentQuestionIndex][1];
     choiceA.textContent = "A. " + thisChoiceList[0];
     choiceB.textContent = "B. " + thisChoiceList[1];
     choiceC.textContent = "C. " + thisChoiceList[2];
     choiceD.textContent = "D. " + thisChoiceList[3];
+}
+
+// This function evaluates whether the user's chosen answer is correct 
+function evaluateAnswer(actualAnswer) {
+    // Retrieve the correct answer from the answerKey array 
+    var expectedAnswer = answerKey[currentQuestionIndex];
+
+    if (actualAnswer.value == expectedAnswer) {
+        isCorrectEl.textContent = "Correct!";
+    } else { 
+        isCorrectEl.textContent = "Incorrect.";
+    }
+    
+    // Resets the isCorrect element after 3 seconds 
+    setTimeout(() => {
+        isCorrectEl.textContent = '';
+    }, 3000);
+
+    // Show the next question 
+    currentQuestionIndex++; 
+    showNextQuestion();
 }
 
 // This function will create a time interval that will trigger every second 
@@ -64,4 +89,5 @@ function startTimer() {
     // TODO: once timer reaches 0 seconds, do something
 }
 
+// Event Listeners 
 startButton.addEventListener("click", startQuiz);
