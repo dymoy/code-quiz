@@ -14,14 +14,18 @@ header {
     align-items: center;
 }
 
+.btn {
+    font-family: 'Comfortaa', sans-serif;
+    background-color: teal;
+    color: whitesmoke;
+}
+
 #view-scores-btn {
     height: 35px;
     width: auto;
     position: absolute;
     top: 40px;
     left: 30px;
-    background-color: teal;
-    color: whitesmoke;
 }
 
 #timer-container {
@@ -52,8 +56,6 @@ main {
     width: 200px;
     height: 40px;
     margin-top: 40px;
-    background-color: teal;
-    color: whitesmoke;
 }
 
 button:hover {
@@ -63,6 +65,9 @@ button:hover {
 /* Quiz Div Rules */
 #quiz-div {
     display: none;
+    width: 50%;
+    text-wrap: wrap;
+    text-align: left;
 }
 
 #choices-list {
@@ -84,4 +89,12 @@ button:hover {
     height: 40px;
     text-align: left;
     padding-top: 20px;
+}
+
+#game-over-div {
+    display: none;
+}
+
+#score {
+    color: blue;
 }
