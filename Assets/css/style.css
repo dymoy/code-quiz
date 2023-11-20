@@ -55,3 +55,7 @@ main {
     background-color: teal;
     color: whitesmoke;
 }
+
+button:hover {
+    cursor: pointer;
+}
