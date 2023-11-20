@@ -10,15 +10,19 @@ var choiceA = document.getElementById("choice-a");
 var choiceB = document.getElementById("choice-b");
 var choiceC = document.getElementById("choice-c");
 var choiceD = document.getElementById("choice-d");
+var isCorrectEl = document.getElementById("is-correct-text");
+
+// TODO: Add functionality to "View highscores" buttons
 
 var currentQuestionIndex = 0;
+// Create an array and store questions in index 0, answer choices in index 1, and the expected answer in index 2 
 const questionsArray = [
-    ["Inside which HTML element do we put JavaScript?", ["<javascript>", "<scripting>", "<js>", "<script>"]],
-    ["Which of the following options is NOT a primitive data type of JavaScript?", ["String", "Boolean", "Alert", "Number"]]
+    ["Inside which HTML element do we put JavaScript?", ["<javascript>", "<scripting>", "<js>", "<script>"], 3],
+    ["Which of the following options is NOT a primitive data type of JavaScript?", ["String", "Boolean", "Alert", "Number"], 2],
+    ["What is the correct syntax to define a function in JavaScript?", ["function myFunction() {...}", "function = myFunction() {...}", "function:myFunction() {...}", "new function = myFunction() {...}"], 0],
+    ["How can you add a single-ling comment in a JavaScript file?", ["<!-- This is a comment -->", "\"This is a comment\"", "// This is a comment", "/* This is a comment */"], 2],
+    ["Which even occurs when the user clicks on an HTML element?", ["onmouseclick", "onclick", "onchange", "onmouseover"], 1]
 ];
-const answerKey = [3, 2];
-
-var isCorrectEl = document.getElementById("is-correct-text");
 
 // This function will be called once the "Start" button is clicked 
 function startQuiz() {
@@ -31,6 +35,7 @@ function startQuiz() {
 
 // This function will present the next question to the user.
 function showNextQuestion() {
+    // TODO: if (all questions were answered), allow user to save initials and score 
     questionEl.textContent = questionsArray[currentQuestionIndex][0];
 
     var thisChoiceList = questionsArray[currentQuestionIndex][1];
@@ -43,12 +48,13 @@ function showNextQuestion() {
 // This function evaluates whether the user's chosen answer is correct 
 function evaluateAnswer(actualAnswer) {
     // Retrieve the correct answer from the answerKey array 
-    var expectedAnswer = answerKey[currentQuestionIndex];
+    var expectedAnswer = questionsArray[currentQuestionIndex][2];
 
     if (actualAnswer.value == expectedAnswer) {
         isCorrectEl.textContent = "Correct!";
     } else { 
         isCorrectEl.textContent = "Incorrect.";
+         // TODO: deduct time if answer is incorrect 
     }
     
     // Resets the isCorrect element after 3 seconds 
@@ -86,7 +92,7 @@ function startTimer() {
         }
     }, 1000);
     
-    // TODO: once timer reaches 0 seconds, do something
+    // TODO: once timer reaches 0 seconds, allow user to save initials and score
 }
 
 // Event Listeners 
