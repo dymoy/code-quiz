@@ -11,7 +11,7 @@ var choiceB = document.getElementById("choice-b");
 var choiceC = document.getElementById("choice-c");
 var choiceD = document.getElementById("choice-d");
 var isCorrectEl = document.getElementById("is-correct-text");
-var timeLeft = 90;
+var timeLeft = 60;
 var timeInterval; 
 
 var gameOverDiv = document.getElementById("game-over-div");
@@ -38,7 +38,7 @@ function startQuiz() {
     showNextQuestion();
 
     // Reset values 
-    timeLeft = 90;
+    timeLeft = 60;
     currentQuestionIndex = 0;
     landingDiv.setAttribute("style", "display: none;");
     gameOverDiv.setAttribute("style", "display: none;");
@@ -49,7 +49,6 @@ function startQuiz() {
 function showNextQuestion() {
     if (currentQuestionIndex >= questionsArray.length) {
         // If all questions of the quiz have been answered, it is game over
-        gameOverMsg.textContent = "All done!";
         gameOver();
     } else {
         // If there are still quiz questions remaining, show the next question
@@ -69,9 +68,19 @@ function gameOver() {
     quizDiv.setAttribute("style", "display: none;");
     gameOverDiv.setAttribute("style", "display: block");
 
-    // Display the score 
-    // TODO: check the edge case - user chooses the wrong answer for last question when timer <10.
+    // Stop the timer from decrementing
     stopTimer();
+    
+    // If the score goes below 0 on the last question, default the final score to 0 
+    if (timeLeft <= 0) { 
+        timeLeft = 0;
+        timeEl.textContent = `${timeLeft} seconds`;
+        gameOverMsg.textContent = "You ran out of time!"
+
+    } else {
+        gameOverMsg.textContent = "All done!";
+    }
+
     score.textContent = timeLeft;
 }
 
@@ -83,12 +92,12 @@ function evaluateAnswer(actualAnswer) {
     if (actualAnswer.value == expectedAnswer) {
         isCorrectEl.textContent = "Correct!";
     } else { 
-        isCorrectEl.textContent = "Incorrect.";
+        isCorrectEl.textContent = "Incorrect. Time was deducted.";
         // Deduct time if the chosen answer is incorrect 
         timeLeft -= 10;
     }
     
-    // Resets the isCorrect element after 3 seconds 
+    // Resets the isCorrect element to an empty string after 3 seconds 
     setTimeout(() => {
         isCorrectEl.textContent = '';
     }, 3000);
@@ -117,10 +126,6 @@ function startTimer() {
             timeLeft--;
         } else {
             // Once timer reaches 0 seconds, it's game over. 
-            timeLeft = 0;
-            timeEl.textContent = `${timeLeft} seconds`;
-            gameOverMsg.textContent = "You ran out of time!"
-            stopTimer();
             gameOver();
         }
     }, 1000);
