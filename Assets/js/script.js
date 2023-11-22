@@ -3,7 +3,6 @@ var startButton = document.getElementById("start-btn");
 var timerEl = document.getElementById("timer-left");
 var timeEl = document.getElementById("time");
 var landingDiv = document.getElementById("landing-div");
-
 var quizDiv = document.getElementById("quiz-div");
 var questionEl = document.getElementById("question");
 var choiceA = document.getElementById("choice-a");
@@ -11,18 +10,18 @@ var choiceB = document.getElementById("choice-b");
 var choiceC = document.getElementById("choice-c");
 var choiceD = document.getElementById("choice-d");
 var isCorrectEl = document.getElementById("is-correct-text");
-var timeLeft = 60;
-var timeInterval; 
-
 var gameOverDiv = document.getElementById("game-over-div");
 var gameOverMsg = document.getElementById("game-over-msg");
-var score = document.getElementById("score");
+var scoreEl = document.getElementById("score");
 var submitInitialsButton = document.getElementById("submit-initials-btn");
+var highscoresDiv = document.getElementById("highscores-div");
+var highscoresListEl = document.getElementById("highscores-list");
 
-// TODO: Add functionality to "View highscores" buttons
-// TODO: Add functionality to save initials and scores at game over
-
+var timeLeft = 60;
+var timeInterval; 
 var currentQuestionIndex = 0;
+var scoreIndex = 1;
+
 // Create an array and store questions in index 0, answer choices in index 1, and the expected answer in index 2 
 const questionsArray = [
     ["Inside which HTML element do we put JavaScript?", ["<javascript>", "<scripting>", "<js>", "<script>"], 3],
@@ -31,6 +30,37 @@ const questionsArray = [
     ["How can you add a single-line comment in a JavaScript file?", ["<!-- This is a comment -->", "\"This is a comment\"", "// This is a comment", "/* This is a comment */"], 2],
     ["Which even occurs when the user clicks on an HTML element?", ["onmouseclick", "onclick", "onchange", "onmouseover"], 1]
 ];
+
+// TODO: Add functionality to "View highscores" buttons
+
+// Shows highscore list after submitting initials 
+function showHighscores() {
+    var initials = document.getElementById("initials-box").value.trim();
+
+    // If the text box is empty or only contains whitespace, alert the user to enter input
+    if (initials === '') {
+        alert("Please enter your initials to save your score.");
+        return;
+    }
+
+    gameOverDiv.setAttribute("style", "display: none;");
+    highscoresDiv.setAttribute("style", "display: block;");
+
+    // Create a <li> element in the document 
+    var newScore = document.createElement("li");
+    newScore.className = 'highscore';
+    newScore.textContent = `${scoreIndex}. ${initials} - ${scoreEl.textContent}`;
+
+    // Append newly created list item into the unordered list 
+    highscoresListEl.appendChild(newScore);
+    scoreIndex++;
+}
+
+function resetToLanding() {
+    highscoresDiv.setAttribute("style", "display: none;");
+    landingDiv.setAttribute("style", "display: block;");
+    timeLeft = 60;
+}
 
 // This function will be called once the "Start" button is clicked
 function startQuiz() {
@@ -81,7 +111,7 @@ function gameOver() {
         gameOverMsg.textContent = "All done!";
     }
 
-    score.textContent = timeLeft;
+    scoreEl.textContent = timeLeft;
 }
 
 // This function evaluates whether the user's chosen answer is correct 
@@ -136,6 +166,3 @@ function stopTimer () {
     timeEl.textContent = `${timeLeft} seconds`;
     clearInterval(timeInterval);
 }
-
-// Event Listeners 
-startButton.addEventListener("click", startQuiz);

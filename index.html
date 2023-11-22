@@ -21,12 +21,12 @@
         <div id="landing-div">
             <section id="quiz-rules">
                 <p>Welcome to the code quiz!</p> 
-                <p>You will have 90 seconds to answer a series of 5 multiple choice questions. </p>
+                <p>You will have 60 seconds to answer a series of 5 multiple choice questions. </p>
                 <p>If you answer a question incorrectly, 10 seconds will be decucted from the allotted time.</p>
                 <p>The quiz is over when you answer all questions or if the timer reaches 0.</p>
                 <p>Good luck!</p>
             </section>
-            <button id="start-btn" class="btn">Start Quiz</button>
+            <button id="start-btn" onclick="startQuiz()" class="btn">Start Quiz</button>
         </div>
         <div id="quiz-div">
             <section id="question"><h3></h3></section>
@@ -46,8 +46,13 @@
             <section id="initials-container">
                 <label for="initials-box">Enter your initials:</label>
                 <input type="text" id="initials-box">
-                <button id="submit-initials-btn" class="btn">Submit</button>
+                <button id="submit-initials-btn" onclick="showHighscores()" class="btn">Submit</button>
             </section>
+        </div>
+        <div id="highscores-div">
+            <h2 id="highscores-title">High Scores</h3>
+            <ul id="highscores-list"></ul>
+            <button id="restart-btn" onclick="resetToLanding()" class="btn">Restart</button>
         </div>
     </main>
     <script src="./Assets/js/script.js"></script>
