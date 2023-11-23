@@ -10,7 +10,7 @@
 <body>
     <header>
         <div id="view-scores-btn-container">
-            <button id="view-scores-btn" class="btn">View Highscores</button>
+            <button id="view-scores-btn" onclick="showHighscores(this)" class="btn">View Highscores</button>
         </div>
         <h1 id="title">Code Quiz</h1>
         <div id="timer-container">
@@ -46,13 +46,14 @@
             <section id="initials-container">
                 <label for="initials-box">Enter your initials:</label>
                 <input type="text" id="initials-box">
-                <button id="submit-initials-btn" onclick="showHighscores()" class="btn">Submit</button>
+                <button id="submit-initials-btn" onclick="showHighscores(this)" class="btn">Submit</button>
             </section>
         </div>
         <div id="highscores-div">
             <h2 id="highscores-title">High Scores</h3>
             <ul id="highscores-list"></ul>
-            <button id="restart-btn" onclick="resetToLanding()" class="btn">Restart</button>
+            <button id="restart-btn" onclick="resetToLanding()" class="btn">Back</button>
+            <button id="clear-scores-btn" onclick="clearHighscores()" class="btn">Clear Highscores</button>
         </div>
     </main>
     <script src="./Assets/js/script.js"></script>
