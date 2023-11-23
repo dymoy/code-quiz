@@ -16,6 +16,7 @@ var scoreEl = document.getElementById("score");
 var submitInitialsButton = document.getElementById("submit-initials-btn");
 var highscoresDiv = document.getElementById("highscores-div");
 var highscoresListEl = document.getElementById("highscores-list");
+var initials = document.getElementById("initials-box");
 
 var timeLeft;
 var timeInterval; 
@@ -31,29 +32,33 @@ const questionsArray = [
     ["Which even occurs when the user clicks on an HTML element?", ["onmouseclick", "onclick", "onchange", "onmouseover"], 1]
 ];
 
-// TODO: Add functionality to "View highscores" button
-
 // Shows highscore list after submitting initials 
-function showHighscores() {
-    var initials = document.getElementById("initials-box").value.trim();
+function showHighscores(event) {
+    // If the 'View Highscores' button is clicked, show current highscores 
+    if (event.id === 'view-scores-btn') {
+        landingDiv.setAttribute('style', 'display: none;');
+        quizDiv.setAttribute('style', 'display: none;');
+        gameOverDiv.setAttribute('style', 'display: none;');
+        highscoresDiv.setAttribute('style', 'display: block;');
+    } else {
+        // If the text box is empty or only contains whitespace, alert the user to enter input
+        if (initials.value === '') {
+            alert("Please enter your initials to save your score.");
+            return;
+        }
+    
+        gameOverDiv.setAttribute("style", "display: none;");
+        highscoresDiv.setAttribute("style", "display: block;");
+    
+        // Create a <li> element in the document 
+        var newScore = document.createElement("li");
+        newScore.className = 'highscore';
+        newScore.textContent = `${scoreIndex}. ${initials.value.trim()} - ${scoreEl.textContent}`;
 
-    // If the text box is empty or only contains whitespace, alert the user to enter input
-    if (initials === '') {
-        alert("Please enter your initials to save your score.");
-        return;
+        // Append newly created list item into the unordered list 
+        highscoresListEl.appendChild(newScore);
+        scoreIndex++;
     }
-
-    gameOverDiv.setAttribute("style", "display: none;");
-    highscoresDiv.setAttribute("style", "display: block;");
-
-    // Create a <li> element in the document 
-    var newScore = document.createElement("li");
-    newScore.className = 'highscore';
-    newScore.textContent = `${scoreIndex}. ${initials} - ${scoreEl.textContent}`;
-
-    // Append newly created list item into the unordered list 
-    highscoresListEl.appendChild(newScore);
-    scoreIndex++;
 }
 
 function resetToLanding() {
@@ -66,6 +71,7 @@ function startQuiz() {
     // Reset timer 
     timeLeft = 60;
     timeInterval = setInterval(startTimer, 1000);
+    initials.value = '';
 
     // Reset question
     currentQuestionIndex = 0;
