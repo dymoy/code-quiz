@@ -17,7 +17,7 @@ var submitInitialsButton = document.getElementById("submit-initials-btn");
 var highscoresDiv = document.getElementById("highscores-div");
 var highscoresListEl = document.getElementById("highscores-list");
 
-var timeLeft = 60;
+var timeLeft;
 var timeInterval; 
 var currentQuestionIndex = 0;
 var scoreIndex = 1;
@@ -59,17 +59,19 @@ function showHighscores() {
 function resetToLanding() {
     highscoresDiv.setAttribute("style", "display: none;");
     landingDiv.setAttribute("style", "display: block;");
-    timeLeft = 60;
 }
 
 // This function will be called once the "Start" button is clicked
 function startQuiz() {
-    startTimer();
+    // Reset timer 
+    timeLeft = 60;
+    timeInterval = setInterval(startTimer, 1000);
+
+    // Reset question
+    currentQuestionIndex = 0;
     showNextQuestion();
 
-    // Reset values 
-    timeLeft = 60;
-    currentQuestionIndex = 0;
+    // Show quiz 
     landingDiv.setAttribute("style", "display: none;");
     gameOverDiv.setAttribute("style", "display: none;");
     quizDiv.setAttribute("style", "display: block;");
@@ -139,26 +141,24 @@ function evaluateAnswer(actualAnswer) {
 
 // This function will create a time interval that will trigger every second 
 function startTimer() { 
-    timeInterval = setInterval(function () {
-        // Change the time color to red once it decrements to 30 seconds and lower. 
-        if (timeLeft > 30) {
-            timeEl.setAttribute("style", "color: blue;");
-        } else {
-            timeEl.setAttribute("style", "color: red;");
-        }
+    // Change the time color to red once it decrements to 30 seconds and lower. 
+    if (timeLeft > 30) {
+        timeEl.setAttribute("style", "color: blue;");
+    } else {
+        timeEl.setAttribute("style", "color: red;");
+    }
 
-        // Update the text within HTML to reflect the time remaining
-        if (timeLeft > 1) {
-            timeEl.textContent = `${timeLeft} seconds`;
-            timeLeft--;
-        } else if (timeLeft === 1) {
-            timeEl.textContent = `${timeLeft} second`;
-            timeLeft--;
-        } else {
-            // Once timer reaches 0 seconds, it's game over. 
-            gameOver();
-        }
-    }, 1000);
+    // Update the text within HTML to reflect the time remaining
+    if (timeLeft > 1) {
+        timeEl.textContent = `${timeLeft} seconds`;
+        timeLeft--;
+    } else if (timeLeft === 1) {
+        timeEl.textContent = `${timeLeft} second`;
+        timeLeft--;
+    } else {
+        // Once timer reaches 0 seconds, it's game over. 
+        gameOver();
+    }
 }
 
 // This function updates the time in HTML and stops the timer. 
