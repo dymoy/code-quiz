@@ -19,7 +19,7 @@ var highscoresListEl = document.getElementById("highscores-list");
 
 var timeLeft;
 var timeInterval; 
-var currentQuestionIndex = 0;
+var currentQuestionIndex;
 var scoreIndex = 1;
 
 // Create an array and store questions in index 0, answer choices in index 1, and the expected answer in index 2 
@@ -31,7 +31,7 @@ const questionsArray = [
     ["Which even occurs when the user clicks on an HTML element?", ["onmouseclick", "onclick", "onchange", "onmouseover"], 1]
 ];
 
-// TODO: Add functionality to "View highscores" buttons
+// TODO: Add functionality to "View highscores" button
 
 // Shows highscore list after submitting initials 
 function showHighscores() {
