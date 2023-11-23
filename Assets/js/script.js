@@ -61,6 +61,14 @@ function showHighscores(event) {
     }
 }
 
+// This function will remove all highscores from the list 
+function clearHighscores() { 
+    scoreIndex = 1;
+    while (highscoresListEl.hasChildNodes) {
+        highscoresListEl.removeChild(highscoresListEl.firstChild);
+    }
+}
+
 function resetToLanding() {
     highscoresDiv.setAttribute("style", "display: none;");
     landingDiv.setAttribute("style", "display: block;");
