@@ -5,7 +5,6 @@ body {
 }
 
 /* Header CSS Rules */
-
 header {
     margin-top: 30px;
     display: flex;
@@ -85,7 +84,7 @@ button:hover {
 
 #is-correct-text {
     border-top: 2px lightgrey solid;
-    width: 200px;
+    width: 280px;
     height: 40px;
     text-align: left;
     padding-top: 20px;
@@ -97,4 +96,22 @@ button:hover {
 
 #score {
     color: blue;
+}
+
+#highscores-div { 
+    display: none;
+    width: 50%;
+}
+
+#highscores-list { 
+    text-align: left;
+    overflow: scroll;
+} 
+
+.highscore { 
+    background-color: rgb(0, 128, 128, 0.3);
+    height: 30px;
+    padding: 20px;
+    padding-bottom: 0px;
+    list-style: none;
 }
