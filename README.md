@@ -31,7 +31,7 @@ The source code is found in the root directory of the main branch.
 
 ### Screenshot of the webpage after answering a quiz question correctly 
 
-!["Screenshot of the webpage after answering ta quiz question correctly"](./Assets/images/code-quiz-question2.png)
+!["Screenshot of the webpage after answering ta quiz question correctly"](./Assets/images/code-quiz-incorrect-answer.png)
 
 ### Screenshot of the webpage after finishing the quiz
 
