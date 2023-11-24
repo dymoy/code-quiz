@@ -2,6 +2,7 @@
 body { 
     font-family: 'Comfortaa', sans-serif;
     text-align: center;
+    /* min-width: 600px; */
 }
 
 /* Header CSS Rules */
@@ -49,6 +50,7 @@ main {
     text-align: center;
     line-height: 10px;
     margin-top: 100px;
+    line-height: 1.2;
 }
 
 #start-btn {
@@ -67,6 +69,10 @@ button:hover {
     width: 50%;
     text-wrap: wrap;
     text-align: left;
+}
+
+#question {
+    line-height: 1.2;
 }
 
 #choices-list {
@@ -90,6 +96,7 @@ button:hover {
     padding-top: 20px;
 }
 
+/* GameOver Div Rules */
 #game-over-div {
     display: none;
 }
@@ -98,6 +105,7 @@ button:hover {
     color: blue;
 }
 
+/* Highscore Div Rules */
 #highscores-div { 
     display: none;
     width: 50%;
@@ -114,4 +122,59 @@ button:hover {
     padding: 20px;
     padding-bottom: 0px;
     list-style: none;
+}
+
+/* Media Queries */
+@media screen and (max-width: 700px) {
+    main { 
+        justify-content: center;
+        margin-top: 40px;
+    }
+
+    /* Header Rules */
+    header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #title { 
+        order: 1;
+    }
+
+    #view-scores-btn,
+    #timer-container {
+        position: static;
+    }
+
+    #view-scores-btn-container {
+        order: 2;
+    }
+
+    #timer-container { 
+        order: 3;
+    }
+
+    /* Quiz Div Rules */
+    #quiz-div {
+        width: 100%;
+        text-align: center;
+    }
+
+    .choice { 
+        margin: 15px auto;
+    }
+
+    #is-correct-text {
+        margin: 20px auto;
+        text-align: center;
+    }
+
+    /* Highscores Div Rules */
+    #highscores-div {
+        width: 100%;
+    }
+
+    #highscores-list {
+        padding: 0px;
+    }
 }
